@@ -1,68 +1,76 @@
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-#define TAM 100
+#define MAX 10
 
-void cargarVector(int v[], int tam);
-void buscarMaxMin(int v[], int tam, int *max, int *min);
-void mostrarPosicionesMax(int v[], int tam, int max);
+void cargarVector(int v[], int tam, char nombre);
+int productoEscalar(int A[], int B[], int tam);
+void mostrarVector(int v[], int tam, char nombre);
 
 
 
-int main()//MAIN
-
+int main()
 {
-    int numeros[TAM];
-    int max, min;
+    int A[MAX], B[MAX];
+    int tam;
+    int resultado;
 
-    srand(time(NULL));
+    do //armar los dos vectores
+    {
+        printf("Ingrese el tamaño de los vectores (1 a %d): ", MAX);
+        scanf("%d", &tam);
+        if (tam<1 || tam>MAX)
+            printf("Tamaño inválido. Intente nuevamente.\n");
+    }while(tam<1 || tam>MAX);
 
-    cargarVector(numeros, TAM);
-    buscarMaxMin(numeros, TAM, &max, &min);
-    printf("Valor máximo: %d\n", max);
-    printf("Valor mínimo: %d\n", min);
-    
-    mostrarPosicionesMax(numeros, TAM, max);
 
+    cargarVector(A, tam, 'A');
+    cargarVector(B, tam, 'B');
+
+
+    printf("\nVector A: ");
+    mostrarVector(A, tam, 'A');
+    printf("\nVector B: ");
+    mostrarVector(B, tam, 'B');
+
+
+    resultado = productoEscalar(A, B, tam);
+
+    //resultado
+    printf("\n\nEl producto escalar de A y B es: %d\n", resultado);
 
     return 0;
 }
 
 
-//vector numeros randoms
-void cargarVector(int v[], int tam)
+
+//cargar vector
+void cargarVector(int v[], int tam, char nombre)
 {
+    printf("\nCargando vector %c:\n", nombre);
     for (int i=0; i<tam; i++)
     {
-        v[i]=10+rand()%31;
+        printf("Ingrese el elemento %d: ", i+1);
+        scanf("%d", &v[i]);
     }
 }
 
-//maximos y minimos
-void buscarMaxMin(int v[], int tam, int *max, int *min)
+//producto escalar
+int productoEscalar(int A[], int B[], int tam)
 {
-    *max=v[0];
-    *min=v[0];
-
-    for(int i=1; i<tam; i++)
-    {
-        if (v[i]>*max)
-            *max=v[i];
-        if (v[i]<*min)
-            *min=v[i];
-    }
-}
-
-//posiciones de los maximos
-void mostrarPosicionesMax(int v[], int tam, int max)
-{
-    printf("El valor máximo (%d) se repite en las posiciones: ", max);
+    int suma=0;
     for (int i=0; i<tam; i++)
     {
-        if (v[i]==max)
-            printf("%d ", i);
+        suma+= A[i]*B[i];
     }
-    printf("\n");
+    return suma;
+}
+
+// mostrar el vector
+void mostrarVector(int v[], int tam, char nombre)
+{
+    for (int i=0; i<tam; i++)
+    {
+        printf("%d ", v[i]);
+    }
 }
