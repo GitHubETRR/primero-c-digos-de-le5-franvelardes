@@ -1,11 +1,10 @@
-
 #include <stdio.h>
-
 #define MAX 10
 
-void cargarVector(int v[], int tam, char nombre);
+void cargarVectorA(int A[], int tam);
+void cargarVectorB(int B[], int tam);
 int productoEscalar(int A[], int B[], int tam);
-void mostrarVector(int v[], int tam, char nombre);
+void mostrarVector(int v[], int tam);
 
 
 
@@ -15,28 +14,26 @@ int main()
     int tam;
     int resultado;
 
-    do //armar los dos vectores
+    do
     {
         printf("Ingrese el tamaño de los vectores (1 a %d): ", MAX);
         scanf("%d", &tam);
-        if (tam<1 || tam>MAX)
-            printf("Tamaño inválido. Intente nuevamente.\n");
-    }while(tam<1 || tam>MAX);
 
+        if (tam<1||tam>MAX)
+            printf("Tamaño inválido\n");
 
-    cargarVector(A, tam, 'A');
-    cargarVector(B, tam, 'B');
+    } while (tam<1||tam>MAX);
 
+    cargarVectorA(A, tam);
+    cargarVectorB(B, tam);
 
+    // Mostrar vectores
     printf("\nVector A: ");
-    mostrarVector(A, tam, 'A');
+    mostrarVector(A, tam);
     printf("\nVector B: ");
-    mostrarVector(B, tam, 'B');
+    mostrarVector(B, tam);
 
-
-    resultado = productoEscalar(A, B, tam);
-
-    //resultado
+    resultado=productoEscalar(A, B, tam);
     printf("\n\nEl producto escalar de A y B es: %d\n", resultado);
 
     return 0;
@@ -44,30 +41,37 @@ int main()
 
 
 
-//cargar vector
-void cargarVector(int v[], int tam, char nombre)
+void cargarVectorA(int A[], int tam)// Cargar vector A
 {
-    printf("\nCargando vector %c:\n", nombre);
+    printf("\nCargando vector A:\n");
     for (int i=0; i<tam; i++)
     {
-        printf("Ingrese el elemento %d: ", i+1);
-        scanf("%d", &v[i]);
+        printf("Ingrese el elemento %d: ", i + 1);
+        scanf("%d", &A[i]);
     }
 }
 
-//producto escalar
+void cargarVectorB(int B[], int tam) //cargar vector B
+{
+    printf("\nCargando vector B:\n");
+    for (int i=0; i<tam; i++)
+    {
+        printf("Ingrese el elemento %d: ", i+1);
+        scanf("%d", &B[i]);
+    }
+}
+
 int productoEscalar(int A[], int B[], int tam)
 {
     int suma=0;
     for (int i=0; i<tam; i++)
     {
-        suma+= A[i]*B[i];
+        suma+=A[i]*B[i];
     }
     return suma;
 }
 
-// mostrar el vector
-void mostrarVector(int v[], int tam, char nombre)
+void mostrarVector(int v[], int tam)
 {
     for (int i=0; i<tam; i++)
     {
