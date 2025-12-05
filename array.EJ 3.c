@@ -23,7 +23,6 @@ int main()
             printf("%d",numeros[i]); //para que el ultimo no tenga la coma
         else
             printf("%d, ",numeros[i]);}
-
     printf("\n");
     repeticiones= contarRepeticionesMayor(numeros, TAM);
 
@@ -65,4 +64,5 @@ int contarRepeticionesMayor(int v[], int tam)
     }
 
     return contador;
+
 }
