@@ -62,7 +62,7 @@ void mostrarPosicionesMax(int v[], int tam, int max)
     for (int i=0; i<tam; i++)
     {
         if (v[i]==max)
-            printf("%d ", i);
+            printf("%d ",i);
     }
     printf("\n");
 }
